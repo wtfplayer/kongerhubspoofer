@@ -169,7 +169,7 @@ verifyButton.addEventListener('click', () => {
   gateStatus.classList.add('active');
   gateProgress.classList.add('visible');
 
-  const DURATION = 1500;
+  const DURATION = 1000;
   const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
   gateProgressBar.style.transition = 'none';
   gateProgressBar.style.width = '0%';
