@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KongerHub Spoofer</title>
+<meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="KongerHub Spoofer for Windows 10/11. Permanent, temporary, and MAC.">
+<meta property="og:title" content="Luafly">
+<meta property="og:description" content="KongerHub Spoofer for Windows 10/11. Permanent, temporary, and MAC.">
+<meta property="og:image" content="https://dspekxodspexlaeluffk.supabase.co/storage/v1/object/public/images/1779331246663-934z1dx1q9.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Luafly">
+<meta name="twitter:description" content="KongerHub Spoofer for Windows 10/11. Permanent, temporary, and MAC.">
+<meta name="twitter:image" content="https://dspekxodspexlaeluffk.supabase.co/storage/v1/object/public/images/1791847105020-j2qpyd5n348.png">
+<link rel="icon" type="image/x-icon" href="https://dspekxodspexlaeluffk.supabase.co/storage/v1/object/public/images/1791847105020-j2qpyd5n348.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--bg:#050505;--line:#1c1c1c;--muted:#7b8186;--white:#f7f7f7}
@@ -14,7 +25,6 @@
 @media(max-width:900px){.hero{min-height:620px;padding-top:100px}.container{width:calc(100% - 32px)}.appbar{height:auto;min-height:76px;padding:18px;flex-wrap:wrap}.brand{font-size:17px}.nav{width:100%;margin:12px 0 0;overflow-x:auto;gap:2px}.nav-item{padding:12px;font-size:12px}.window-controls{margin-left:auto}.app-content{padding:24px 18px 28px}.cards{grid-template-columns:1fr;gap:14px}.mode-card{min-height:330px;padding:28px 22px 22px}.card-bottom{padding-top:30px}.feature-grid{grid-template-columns:1fr;gap:32px}.features{padding:42px 0 55px}.features h3{font-size:22px}.breadcrumb{margin-bottom:28px}h2{font-size:25px}}
 @media(min-width:901px) and (max-width:1150px){.mode-card{padding:28px 18px 20px}.mode-title{font-size:19px}.description{font-size:12px}.appbar{padding:0 22px}.nav-item{padding:13px 10px}.container{width:calc(100% - 48px)}}
 
-/* Compact proportions matched to the reference screenshot */
 .container{width:min(1135px,calc(100% - 48px))}
 .appbar{height:70px;padding:0 24px;gap:10px}
 .brand{font-size:16px}.pill{font-size:9px;padding:5px 7px}
@@ -34,12 +44,10 @@
 
 button.download{border:0;font:600 14px Inter,Arial,sans-serif;cursor:pointer}
 
-/* Non-interactive elements */
 .nav-item{pointer-events:none;cursor:default;user-select:none}
 .action{pointer-events:none;cursor:default}
 .action:hover,.action:active{transform:none;background:#f8f8f8}
 
-/* Reduced motion: only disable decorative effects. The spinner and progress bar stay functional. */
 @media(prefers-reduced-motion:reduce){
   .verify-btn .shine,.gate-box{animation:none!important}
   html{scroll-behavior:auto!important}
@@ -135,11 +143,11 @@ document.querySelectorAll('[data-toast]').forEach(button => {
   button.addEventListener('click', () => showToast(button.dataset.toast));
 });
 
-const DOWNLOAD_URL = 'https://github.com/YOURNAME/REPO/releases/latest/download/KongerHub.exe';
+const DOWNLOAD_URL = 'https://github.com/wtfplayer/kongerhubspoofer/releases/latest/download/KongerHub_Spoofer.exe';
 document.getElementById('downloadBtn').addEventListener('click', () => {
   const a = document.createElement('a');
   a.href = DOWNLOAD_URL;
-  a.download = 'KongerHub.exe';
+  a.download = 'KongerHub_Spoofer.exe';
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -161,9 +169,8 @@ verifyButton.addEventListener('click', () => {
   gateStatus.classList.add('active');
   gateProgress.classList.add('visible');
 
-  // Front-end demo transition, not real server-side authentication.
-  const DURATION = 2600; // ms, change to make it faster or slower
-  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; // easeInOutCubic
+  const DURATION = 1500;
+  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
   gateProgressBar.style.transition = 'none';
   gateProgressBar.style.width = '0%';
 
