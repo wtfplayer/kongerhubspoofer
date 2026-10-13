@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
   }
 
   const country = req.headers['x-vercel-ip-country'] || 'Unknown';
-  const userAgent = String(req.headers['user-agent'] || 'Unknown').slice(0, 200);
 
   try {
     await fetch(webhook, {
@@ -24,11 +23,10 @@ module.exports = async (req, res) => {
         username: 'KongerHub Downloads',
         embeds: [
           {
-            title: 'New download',
+            title: 'New Download',
             color: 0xf8f8f8,
             fields: [
-              { name: 'Country', value: country, inline: true },
-              { name: 'Browser', value: userAgent }
+              { name: 'Country', value: country, inline: true }
             ],
             timestamp: new Date().toISOString()
           }
