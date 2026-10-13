@@ -172,7 +172,11 @@ const DOWNLOAD_URL = 'https://github.com/wtfplayer/kongerhubspoofer/releases/lat
 document.getElementById('downloadBtn').addEventListener('click', () => {
   fetch('/api/log-download', { method: 'POST', keepalive: true })
     .then(r => r.json())
-    .then(d => { if (d && typeof d.lat === 'number' && window.kongerGlobe) window.kongerGlobe.focus(d); })
+    .then(d => {
+      if (!d) return;
+      if (typeof d.lat === 'number' && window.kongerGlobe) window.kongerGlobe.focus(d, d.stored === false);
+      if (d.stored === false) console.warn('Download location was not saved:', d.storeError || 'no location data from Vercel');
+    })
     .catch(() => {});
 
   const a = document.createElement('a');
@@ -285,7 +289,6 @@ verifyButton.addEventListener('click', () => {
   function remember(d){
     try { localStorage.setItem(CACHE_KEY, JSON.stringify({ lat: d.lat, lon: d.lon, t: d.t || 0 })); } catch (e) {}
   }
-  function forget(){ try { localStorage.removeItem(CACHE_KEY); } catch (e) {} }
   function recall(){
     try {
       var d = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
@@ -296,11 +299,11 @@ verifyButton.addEventListener('click', () => {
   function setMarker(d){
     marker = { latD: d.lat, lonD: d.lon, lat: d.lat * RAD, lon: d.lon * RAD };
   }
-  function focus(d){
+  function focus(d, skipCache){
     if (!d || typeof d.lat !== "number" || typeof d.lon !== "number") return;
     lastT = d.t || Date.now();
     setMarker(d);
-    remember(d);
+    if (!skipCache) remember(d);
     target = { lam: d.lon * RAD, phi: tiltFor(d.lat) };
   }
   window.kongerGlobe = { focus: focus };
@@ -320,13 +323,12 @@ verifyButton.addEventListener('click', () => {
       .then(function(r){ return r.ok ? r.json() : undefined; })
       .then(function(d){
         if (d === undefined) return;               // server error: keep what we have
-        if (d && d.t) { if (d.t !== lastT) focus(d); }
-        else { marker = null; target = null; tooltipOn = false; forget(); }   // nothing stored yet
+        if (d && d.t && d.t > lastT) focus(d);     // only ever move to something newer than what we show
       })
       .catch(function(){});
   }
   poll();
-  setInterval(poll, 10000);
+  setInterval(poll, 15000);
 
   // ---------- dragging + clicking ----------
   function pos(e){
