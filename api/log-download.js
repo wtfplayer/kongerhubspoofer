@@ -45,6 +45,7 @@ module.exports = async (req, res) => {
 
   const saveLocation = location ? setLatest(location) : Promise.resolve();
 
-  await Promise.allSettled([sendDiscord, saveLocation]);
-  return res.status(200).json({ ok: true, ...(location || {}) });
+  const [, saved] = await Promise.allSettled([sendDiscord, saveLocation]);
+  const stored = location && saved.status === 'fulfilled';
+  return res.status(200).json({ ok: true, ...(stored ? location : {}) });
 };
