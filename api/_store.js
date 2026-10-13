@@ -9,10 +9,16 @@ function findEnv(suffixes) {
   return undefined;
 }
 
+function credentials() {
+  return {
+    url: findEnv(['REST_API_URL', 'REST_URL']),
+    token: findEnv(['REST_API_TOKEN', 'REST_TOKEN'])
+  };
+}
+
 async function command(args) {
-  const url = findEnv(['REST_API_URL', 'REST_URL']);
-  const token = findEnv(['REST_API_TOKEN', 'REST_TOKEN']);
-  if (!url || !token) throw new Error('Redis is not configured');
+  const { url, token } = credentials();
+  if (!url || !token) throw new Error('Redis is not configured (no REST url/token variables found)');
 
   const res = await fetch(url, {
     method: 'POST',
@@ -25,6 +31,11 @@ async function command(args) {
 }
 
 const KEY = 'kongerhub:latest_download';
+
+exports.isConfigured = () => {
+  const { url, token } = credentials();
+  return Boolean(url && token);
+};
 
 exports.setLatest = (value) => command(['SET', KEY, JSON.stringify(value)]);
 
