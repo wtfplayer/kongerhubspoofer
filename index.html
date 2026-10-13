@@ -65,8 +65,12 @@ button.download{border:0;font:600 14px Inter,Arial,sans-serif;cursor:pointer}
 
 /* Globe background */
 .globe-clip{position:absolute;top:0;left:0;right:0;height:960px;overflow:hidden;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,transparent 100%)}
-#globe{position:absolute;top:58px;left:50%;width:min(1140px,150vw);height:auto;aspect-ratio:1/1;transform:translateX(-50%);display:block}
+#globe{position:absolute;top:58px;left:50%;width:min(1140px,150vw);height:auto;aspect-ratio:1/1;transform:translateX(-50%);display:block;pointer-events:auto;touch-action:pan-y;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 .hero,main{position:relative;z-index:1}
+.hero{pointer-events:none;user-select:none;-webkit-user-select:none}
+.hero .download,.hero .scroll{pointer-events:auto}
+main{pointer-events:none}
+.app-window,.features{pointer-events:auto}
 @media(max-width:600px){.globe-clip{height:780px}#globe{top:70px}}
 </style>
 </head>
@@ -220,7 +224,10 @@ verifyButton.addEventListener('click', () => {
 (function(){
   var LAND_B64 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///8AAf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////n///////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////7////////wAAAAA/gAADwAAAAAAP4AAAAAAAAAAAAAAAAAAAAAAAAAAA///+A////////AAAAB//wAAAAAAAAAAH8gAAAAAAAAAAAAAAAAAAAAAAAYH3H//x////////+AAAAA/mAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAA8cAAwP/A////////+AAAAAPGAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAD4DA8+/+AP///////8AAAAAAAAAAAAAf4AAAAH/8AAAAAAAAAAAAAAAAAAAAAH/w83/8AAAf/////8AAAAAAAAAAAAH+AAAB////AAAB/sAAAAAAAAAAAAAAcA4AAw/8AAAP/////8AAAAAAAAAAAAeAAAAP///4AAAAAAAAAAAAAAAAAAAAf+AYe+d3gAAD/////4AAAAAAAAAAAB4AAAH/////+HwAOAAAAAAAAAAAAAAA//+4/4//wAAB/////wAAAAAAAAAAADwAHk3///////4Af4AAAAAwAAAAAAAAff/4O4///AAD/////wAAAAAAAAAAAHwAff////////4///gAAABAAA//gAACAP/+B8f//8AB////+wAAAAAAB/gAAAAAfv/////////////8AAAAAB///+P//H//n+D4f+AA3////AAAAAAA//8AAAA8fv///////////////P+wAf////////R6Cfz4f+AAf///4AAAAAAD///4ID/////////////////////8AD/////////////4Z/wA///4AAAAAAAP///+O////v//////////////////4H/////////////gD/8A///wAwYAAAAf//9+v///////////////////////4/////////////+A/84Af/8AA/8AAAA/8f+D///////////////////////BgP////////////zw//gAP/wAAf8AAAD/4/+f//////////////////////+AOB////////////HcA/gAP/gAADAAAAH/z/////////////////////////+AAH///////////8AwwPAAD/AAAAAAAB//H/////////////////////////+AAP///////////4AA/gAAB/AAAAAAAB//H//////////////////////3v/AAAP//z////////wAA/4AAAOAAAAAAAB//D/////////////////////+A/4AAAA/7AH///////wAA/4wAAAAAAAAAAB//gf////////////////////+DwAAAAArwAA///////4AA/94AAAAAAAAAYA5+A///////////////////4AAHgAAAAAD8AAD//////8AAf/8AAAAAAAAA8AC+C///////////////////wAAfgAAAAAOAAAB///////wAf/+AAAAAAAAA8AO8H///////////////////AAA/gAAAABwAAAA///////+A///AAAAAAAAA8ANwH//////////////////+AAB/AAAAAGAAAAAf///////z///4AAAAAAAHOAOD///////////////////+AAB+AAAAAAAAAABP///////x///8AAAAAAAPPB//////////////////////6AA8AAAAAAAAAAAj///////5///+AAAAAAAOfz//////////////////////+AA4AAAAAAAAAAAD///////////8AAAAAAAAfn//////////////////////6AAwAAAAAAAAAAAD///////////sAAAAAAAA8f//////////////////////7AAAAAAAAAAAAAAB/////////+MPAAAAAAAAD///////////////////////7AAAAAAAAAAAAAAAf/////////wfgAAAAAAAf///////////////////////yAAAAAAAAAAAAAAAf/////////gfgAAAAAAAH///////////////////////iAAAAAAAAAAAAAAAP/////////5AgAAAAAAAD//////v/x//////////////DAAAAAAAAAAAAAAAP/////////+AAAAAAAAAB/////H//B/////////////+AAAAAAAAAAAAAAAAP////////84AAAAAAAAAD//n/+AP+H/////////////8HAAAAAAAAAAAAAAAP////////wgAAAAAAAAH//jz/+AD+H/////////////4PwAAAAAAAAAAAAAAf////////gAAAAAAAAAH/4F4/8AB/B////////////+APAAAAAAAAAAAAAAAP////////wAAAAAAAAAH/4A+f+Ph/g////////////8AIAAAAAAAAAAAAAAAP///////+AAAAAAAAAAH/gMPfP///x///////////v4AMAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/AMCOP///h//////////+ZwAMAAAAAAAAAAAAAAAH///////4AAAAAAAAAAP/AAGHP///g//////////8B4AYAAAAAAAAAAAAAAAH///////wAAAAAAAAAAH+AAcHH///w//////////+w4A4AAAAAAAAAAAAAAAD///////wAAAAAAAAAAA8f+ACD///////////////g8D4AAAAAAAAAAAAAAAB///////wAAAAAAAAAAAz/+AAQE//////////////A4f4AAAAAAAAAAAAAAAB///////gAAAAAAAAAAB//+AAAA//////////////Ax/gAAAAAAAAAAAAAAAAP/////+AAAAAAAAAAAD//+AAAB//////////////gD8AAAAAAAAAAAAAAAAAH/////8AAAAAAAAAAAH///4OAB//////////////gDAAAAAAAAAAAAAAAAAAH/////4AAAAAAAAAAAP///8P4j//////////////wDAAAAAAAAAAAAAAAAAACf////4AAAAAAAAAAAP/////////////////////wAAAAAAAAAAAAAAAAAAABf//zgYAAAAAAAAAAAP/////////P///////////wAAAAAAAAAAAAAAAAAAAAv//AAcAAAAAAAAAAA//////////n///////////wAAAAAAAAAAAAAAAAAAAB3/+AAcAAAAAAAAAAB///////9//j///////////gAAAAAAAAAAAAAAAAAAAAb/+AANgAAAAAAAAAD///////8//wn//////////AAAAAAAAAAAAAAAAAAAAAJ/+AAMAAAAAAAAAAH///////+f/8b//////////AAAAAAAAAAAAAAAAAAAAAM/+AAAgAAAAAAAAAH///////+f/84Af///////+wAAAAAAAAAAAAAAAAAAAAGf8AAAAAAAAAAAAAP////////P//+AP///////4wAAAAAAAAAAAAAAAAAAAAAP8AA/AAAAAAAAAAf////////n///AH///////ggAAAAAAAAAAAAAAAAAAAAAP+A4BgAAAAAAAAAf////////n///AD//+P//8AAAAAAAAAAAAAAAAAAAAAAAP+B4A8AAAAAAAAAf////////j//+AAf/4P/+IAAAAAAAAAAAAAAAgAAAAAAAH/B4AB4AAAAAAAAf////////j//8AAf/wH/8YAAAAAAAAAAAAAAAAAAAAAAAD//wAj9AAAAAAAAP////////x//4AAf/AD/8QAQAAAAAAAAAAAAAAAAAAAAAA//wAAAAAAAAAAAP////////4//wAAf+AD/+AA4AAAAAAAAAAAAAAAAAAAAAAP/wAAAAAAAAAAAf////////4f/AAAf8AD//AA4AAAAAAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAf////////8f8AAAP4AAP/gAwAAAAAAAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAf////////+fwAAAPwAAP/gAwAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAf/////////eAAAAPwAAP/wA8AAAAAAAAAAAAAAAAAAAAAAAAHgAgAAAAAAAAf/////////4AAAAHwAAN/gASAAAAAAAAAAAAAAAAAAAAAAAADAB4AAAAAAAAP/////////g4AAAHwAAMfgALAAAAAAAAAAAAAAAAAAAAAAAADgP/eAAAAAAAH//////////4AAADwAAIPABOAAAAAAAAAAAAAAAAAAAAAAAAByP/+AAAAAAAD//////////4AAADoAAMEACNAAAAAAAAAAAAAAAAAAAAAAAAA9///AAAAAAAB//////////wAAABMAAMAAAHgAAAAAAAAAAAAAAAAAAAAAAAAE///wAAAAAAB//////////wAAAAMAAGAAAPgAAAAAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAf/////////gAAAAMAADAAMDAAAAAAAAAAAAAAAAAAAAAAAAAA////gAAAAAAP/B///////gAAAAAAADgAeAAAAAAAAAAAAAAAAAAAAAAAAAAA////wAAAAAACAA///////AAAAAAAAzwA+AAAAAAAAAAAAAAAAAAAAAAAAAAA////4AAAAAAAAAH/////+AAAAAAAAZwB8AAAAAAAAAAAAAAAAAAAAAAAAAAB////4AAAAAAAAAH/////8AAAAAAAAfwH8AAAAAAAAAAAAAAAAAAAAAAAAAAB////8AAAAAAAAAH/////4AAAAAAAAHwf8AYAAAAAAAAAAAAAAAAAAAAAAAAD////8AAAAAAAAAH/////wAAAAAAAAHwf8+YAAAAAAAAAAAAAAAAAAAAAAAAH/////AAAAAAAAAH/////gAAAAAAAADwf9AAgAAAAAAAAAAAAAAAAAAAAAAAH/////4AAAAAAAAH/////AAAAAAAAAD4P54BxAAAAAAAAAAAAAAAAAAAAAAAH//////AAAAAAAAD////+AAAAAAAAAB8P5wA74AAAAAAAAAAAAAAAAAAAAAAH//////4AAAAAAAB////8AAAAAAAAAA8A54uf/AIAAAAAAAAAAAAAAAAAAAAH//////+AAAAAAAB////8AAAAAAAAAAcAB4AH/wYAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////4AAAAAAAAAAMABIAA/xyAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////4AAAAAAAAAAHkAAAI/8BAAAAAAAAAAAAAAAAAAAAD///////wAAAAAAAf///4AAAAAAAAAAB+AAAA/8AIAAAAAAAAAAAAAAAAAAAB///////gAAAAAAAf///8AAAAAAAAAAADmpgAvMAAAAAAAAAAAAAAAAAAAAAB///////gAAAAAAAf///8AAAAAAAAAAAABCAAAHACAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAf///8AAAAAAAAAAAAAAAAABgBAAAAAAAAAAAAAAAAAAAA//////+AAAAAAAAf///+AAAAAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAAf///+AQAAAAAAAAAAAAB+DAAAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAA////+AwAAAAAAAAAAAAD8HAAAAAAAAAAAAAAAAAAAAAAAP/////4AAAAAAAA////+AwAAAAAAAAAAAB38HgAAAAAAAAAAAAAAAAAAAAAAH/////4AAAAAAAA////+D4AAAAAAAAAAAD/+HwAAAAAAAAAAAAAAAAAAAAAAB/////4AAAAAAAB////8PwAAAAAAAAAAAH//HwAAAABAAAAAAAAAAAAAAAAAA/////4AAAAAAAB////wPwAAAAAAAAAAAP///wAAAAGAAAAAAAAAAAAAAAAAAf////4AAAAAAAA////gPgAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgAAAAAAAAAAAf///8AAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgAAAAAAAAAAH////+AAIAAAAAAAAAAAAAAAAAAAAP////gAAAAAAAAP//+AfAAAAAAAAAAAf/////AAGAAAAAAAAAAAAAAAAAAAAP////AAAAAAAAAP///AfAAAAAAAAAAA//////gAAAAAAAAAAAAAAAAAAAAAAf///4AAAAAAAAAP///AfAAAAAAAAAAA//////gAAAAAAAAAAAAAAAAAAAAAAf///gAAAAAAAAAP//+AOAAAAAAAAAAB//////wAAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAP//4AEAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAH//4AAAAAAAAAAAAB//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAH//4AAAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAD//wAAAAAAAAAAAAA//////8AAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAB//wAAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///4AAAAAAAAAAA//AAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAAAAA/+AAAAAAAAAAAAAAP/AP//4AAAAAAAAAAAAAAAAAAAAAA///gAAAAAAAAAAA/4AAAAAAAAAAAAAAf8AH//wAAAAAAAAAAAAAAAAAAAAAA///AAAAAAAAAAAAcAAAAAAAAAAAAAAAfAAF//gAAAAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gAABgAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAgAAAAAAAAAAAAAAAAAD//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAwAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYAAAA+AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAADQAAAAAAAAAAAAAAAAAD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAHAAAAAAAAAAAAAAAAAAB/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAOAAAAAAAAAAAAAAAAAAH/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAH8AAAAGAB4P4Pz+AAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAB//jAAH//////////wAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAACA////8Af///////////gAAAAAAAAAAAAAAAAAAAAAA/4AAAAAAAAAAAAAAAP3////8D/////////////4AAAAAAAAAAAAAAAAAAAAA/8AAAAAAAAAAB+/////////4f//////////////wAAAAAAAAAAAAAAAAAAAH/+AAAAAAAAf////////////4////////////////4AAAAAAAAAAAAAA+AAAAz+AAAAAAAB//////////////////////////////4AAAAAAAAAADgAB///nj/+AAAAAAAP//////////////////////////////wAAAAAAAA////4Af/////8AAAAAAAP/////////////////////////////8AAAAAAAD/////////////wAAAAAAD//////////////////////////////wAAAAAAAP////////////wAAAAAAf///////////////////////////////wAAAAAD/////////////8AAAAAAD////////////////////////////////wAAAADx/////////////gAAAD8A/////////////////////////////////+AAAAA4D////////////gAAAH+A////////////////////////////////+AAAAAAAAH////////////g/A/4AA///////////////////////////////+AAAAAAAf//////////////4ADg//////////////////////////////////AAAAAAAH///////////////h////////////////////////////////////4AAAAAAP/////////////////////////////////////////////////////gA+/D////////////////////////////////////////////////////////8AAAAB8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
   var MARKER_RGB = "74,222,128";   // glowing dot color (r,g,b)
-  var IDLE_SPEED = 0.05;           // idle spin, radians per second
+  var IDLE_SPEED = 0.05;           // idle spin (radians/second) while there is no download yet
+  var RETURN_AFTER = 7000;         // ms after you let go before the globe drifts back to the latest download
+  var LABEL = "Latest download";
+  var CACHE_KEY = "kongerhub_latest_download";
   var W = 360, H = 180, PI = Math.PI, RAD = PI / 180;
 
   var canvas = document.getElementById("globe");
@@ -228,7 +235,7 @@ verifyButton.addEventListener('click', () => {
   var ctx = canvas.getContext("2d");
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ---- land dots ----
+  // ---------- land dots ----------
   var raw = atob(LAND_B64), bits = new Uint8Array(raw.length);
   for (var i = 0; i < raw.length; i++) bits[i] = raw.charCodeAt(i);
   function isLand(n){ return (bits[n >> 3] >> (7 - (n & 7))) & 1; }
@@ -237,7 +244,7 @@ verifyButton.addEventListener('click', () => {
   for (var r = 0; r < H; r++) {
     var la = (90 - (r + 0.5)) * RAD;
     var step = Math.min(10, Math.max(1, Math.round(1 / Math.max(Math.cos(la), 0.05))));
-    for (var c = (r % 2) * (step > 1 ? 0 : 0); c < W; c += step) {
+    for (var c = 0; c < W; c += step) {
       if (isLand(r * W + c)) {
         sinLat.push(Math.sin(la)); cosLat.push(Math.cos(la));
         lonR.push((c + 0.5 - 180) * RAD);
@@ -246,16 +253,23 @@ verifyButton.addEventListener('click', () => {
   }
   var N = lonR.length;
   var sLat = new Float32Array(sinLat), cLat = new Float32Array(cosLat), lon = new Float32Array(lonR);
-  var bx = [], by = [], bn = [0,0,0,0];
+  var bx = [], by = [], bn = [0, 0, 0, 0];
   for (var b = 0; b < 4; b++) { bx.push(new Float32Array(N)); by.push(new Float32Array(N)); }
   var ALPHA = [0.3, 0.48, 0.68, 0.9];
 
-  // ---- state ----
-  var lam0 = -0.9, phi0 = 0.38;     // view center (radians)
+  // ---------- state ----------
+  var lam0 = -0.9, phi0 = 0.38;                 // view center (radians)
   var target = null, marker = null, lastT = 0;
+  var tooltipOn = false;
+  var markerScreen = { x: 0, y: 0, vis: false };
+  var dragging = false, dragId = null, lx = 0, ly = 0, moved = 0;
+  var vLam = 0, vPhi = 0, lastMoveT = 0, lastInteract = 0;
   var size = 0, dpr = 1;
 
   function wrap(a){ return ((a + PI) % (2 * PI) + 2 * PI) % (2 * PI) - PI; }
+  function clampPhi(p){ return Math.max(-1.4, Math.min(1.4, p)); }
+  function tiltFor(latDeg){ return Math.max(-50, Math.min(50, latDeg * 0.7)) * RAD; }
+  function radius(){ return size / 2 * 0.985; }
 
   function resize(){
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -267,26 +281,129 @@ verifyButton.addEventListener('click', () => {
   window.addEventListener("resize", resize);
   resize();
 
+  // ---------- latest download (shared by everyone, stored on the server) ----------
+  function remember(d){
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ lat: d.lat, lon: d.lon, t: d.t || 0 })); } catch (e) {}
+  }
+  function forget(){ try { localStorage.removeItem(CACHE_KEY); } catch (e) {} }
+  function recall(){
+    try {
+      var d = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+      if (d && typeof d.lat === "number" && typeof d.lon === "number") return d;
+    } catch (e) {}
+    return null;
+  }
+  function setMarker(d){
+    marker = { latD: d.lat, lonD: d.lon, lat: d.lat * RAD, lon: d.lon * RAD };
+  }
   function focus(d){
     if (!d || typeof d.lat !== "number" || typeof d.lon !== "number") return;
     lastT = d.t || Date.now();
-    marker = { lat: d.lat * RAD, lon: d.lon * RAD };
-    var tilt = Math.max(-50, Math.min(50, d.lat * 0.7));
-    target = { lam: d.lon * RAD, phi: tilt * RAD };
+    setMarker(d);
+    remember(d);
+    target = { lam: d.lon * RAD, phi: tiltFor(d.lat) };
   }
   window.kongerGlobe = { focus: focus };
 
+  // On refresh, start already looking at the last known download (no waiting).
+  var cached = recall();
+  if (cached) {
+    lastT = cached.t || 0;
+    setMarker(cached);
+    lam0 = cached.lon * RAD;
+    phi0 = tiltFor(cached.lat);
+    target = { lam: lam0, phi: phi0 };
+  }
+
   function poll(){
     fetch("/api/latest-download", { cache: "no-store" })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){ if (d && d.t && d.t !== lastT) focus(d); })
+      .then(function(r){ return r.ok ? r.json() : undefined; })
+      .then(function(d){
+        if (d === undefined) return;               // server error: keep what we have
+        if (d && d.t) { if (d.t !== lastT) focus(d); }
+        else { marker = null; target = null; tooltipOn = false; forget(); }   // nothing stored yet
+      })
       .catch(function(){});
   }
   poll();
-  setInterval(poll, 15000);
+  setInterval(poll, 10000);
+
+  // ---------- dragging + clicking ----------
+  function pos(e){
+    var rc = canvas.getBoundingClientRect();
+    var k = size / (rc.width || size);
+    return { x: (e.clientX - rc.left) * k, y: (e.clientY - rc.top) * k };
+  }
+  function inSphere(p){
+    var R = radius(), dx = p.x - size / 2, dy = p.y - size / 2;
+    return dx * dx + dy * dy <= R * R;
+  }
+  function overMarker(p){
+    if (!marker || !markerScreen.vis) return false;
+    var dx = p.x - markerScreen.x, dy = p.y - markerScreen.y;
+    return dx * dx + dy * dy <= 20 * 20;
+  }
+
+  canvas.addEventListener("pointerdown", function(e){
+    var p = pos(e);
+    if (!inSphere(p)) { tooltipOn = false; return; }
+    dragging = true; dragId = e.pointerId;
+    try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    lx = p.x; ly = p.y; moved = 0; vLam = 0; vPhi = 0;
+    lastMoveT = performance.now(); lastInteract = lastMoveT;
+    target = null;
+    canvas.style.cursor = "grabbing";
+  });
+
+  canvas.addEventListener("pointermove", function(e){
+    var p = pos(e), now = performance.now();
+    if (dragging && e.pointerId === dragId) {
+      var dx = p.x - lx, dy = p.y - ly, R = radius();
+      lx = p.x; ly = p.y; moved += Math.abs(dx) + Math.abs(dy);
+      var dLam = -dx / R, dPhi = dy / R;
+      lam0 = wrap(lam0 + dLam);
+      phi0 = clampPhi(phi0 + dPhi);
+      var dt = (now - lastMoveT) / 1000;
+      if (dt > 0) {
+        vLam = 0.6 * vLam + 0.4 * Math.max(-6, Math.min(6, dLam / dt));
+        vPhi = 0.6 * vPhi + 0.4 * Math.max(-6, Math.min(6, dPhi / dt));
+      }
+      lastMoveT = now; lastInteract = now;
+      return;
+    }
+    if (!dragging) canvas.style.cursor = overMarker(p) ? "pointer" : (inSphere(p) ? "grab" : "default");
+  });
+
+  function endDrag(e, cancelled){
+    if (!dragging || e.pointerId !== dragId) return;
+    dragging = false;
+    try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    var now = performance.now(), p = pos(e);
+    lastInteract = now;
+    if (now - lastMoveT > 90) { vLam = 0; vPhi = 0; }        // only keep momentum if released while moving
+    if (!cancelled && moved < 6) {                            // a click, not a drag
+      vLam = 0; vPhi = 0;
+      tooltipOn = overMarker(p) ? !tooltipOn : false;
+    }
+    canvas.style.cursor = overMarker(p) ? "pointer" : "grab";
+  }
+  canvas.addEventListener("pointerup", function(e){ endDrag(e, false); });
+  canvas.addEventListener("pointercancel", function(e){ endDrag(e, true); });
+  canvas.addEventListener("pointerleave", function(){ if (!dragging) canvas.style.cursor = "default"; });
+
+  // ---------- drawing ----------
+  function roundRect(x, y, w, h, rad){
+    ctx.beginPath();
+    ctx.moveTo(x + rad, y);
+    ctx.arcTo(x + w, y, x + w, y + h, rad);
+    ctx.arcTo(x + w, y + h, x, y + h, rad);
+    ctx.arcTo(x, y + h, x, y, rad);
+    ctx.arcTo(x, y, x + w, y, rad);
+    ctx.closePath();
+  }
 
   function draw(ts){
-    var R = size / 2 * 0.985, cx = size / 2, cy = size / 2;
+    var R = radius(), cx = size / 2, cy = size / 2;
     var sp0 = Math.sin(phi0), cp0 = Math.cos(phi0);
     ctx.clearRect(0, 0, size, size);
 
@@ -341,6 +458,7 @@ verifyButton.addEventListener('click', () => {
     }
 
     // glowing dot on the most recent download
+    markerScreen.vis = false;
     if (marker) {
       var ml = marker.lon - lam0, mc = Math.cos(ml);
       var mz = sp0 * Math.sin(marker.lat) + cp0 * Math.cos(marker.lat) * mc;
@@ -350,6 +468,7 @@ verifyButton.addEventListener('click', () => {
         var fade = Math.min(1, mz * 3);
         var sec = ts / 1000, pulse = 0.5 + 0.5 * Math.sin(sec * 2.6);
         var ph = (sec % 2.2) / 2.2;
+        markerScreen.x = mx; markerScreen.y = my; markerScreen.vis = mz > 0.08;
 
         var glow = ctx.createRadialGradient(mx, my, 0, mx, my, 44);
         glow.addColorStop(0, "rgba(" + MARKER_RGB + "," + (0.7 * fade) + ")");
@@ -366,6 +485,25 @@ verifyButton.addEventListener('click', () => {
         ctx.beginPath(); ctx.arc(mx, my, 3.4 + pulse * 0.8, 0, 2 * PI); ctx.fill();
         ctx.fillStyle = "rgba(255,255,255," + (0.9 * fade) + ")";
         ctx.beginPath(); ctx.arc(mx, my, 1.4, 0, 2 * PI); ctx.fill();
+
+        // "Latest download" label when the dot is clicked
+        if (tooltipOn && markerScreen.vis) {
+          ctx.font = "600 12px Inter, Arial, sans-serif";
+          var tw = ctx.measureText(LABEL).width, bw = tw + 24, bh = 28;
+          var bxp = Math.max(6, Math.min(size - bw - 6, mx - bw / 2));
+          var byp = my - 20 - bh;
+          ctx.globalAlpha = fade;
+          ctx.fillStyle = "rgba(247,247,247,.97)";
+          roundRect(bxp, byp, bw, bh, 8); ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(mx - 6, byp + bh - 0.5); ctx.lineTo(mx + 6, byp + bh - 0.5); ctx.lineTo(mx, byp + bh + 7);
+          ctx.closePath(); ctx.fill();
+          ctx.fillStyle = "#080808";
+          ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          ctx.fillText(LABEL, bxp + bw / 2, byp + bh / 2 + 0.5);
+          ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
+          ctx.globalAlpha = 1;
+        }
       }
     }
   }
@@ -373,14 +511,26 @@ verifyButton.addEventListener('click', () => {
   var last = 0;
   function frame(ts){
     var dt = Math.min(0.05, (ts - last) / 1000 || 0.016); last = ts;
-    if (target) {
-      var k = 1 - Math.exp(-1.7 * dt);
-      var dlam = wrap(target.lam - lam0);
-      var maxStep = 2.4 * dt;
-      lam0 = wrap(lam0 + Math.max(-maxStep, Math.min(maxStep, dlam * k * 1.4)));
-      phi0 += (target.phi - phi0) * k;
-    } else if (!reduceMotion) {
-      lam0 = wrap(lam0 - IDLE_SPEED * dt);
+    if (!dragging) {
+      if (vLam || vPhi) {                                   // momentum after a flick
+        lam0 = wrap(lam0 + vLam * dt);
+        phi0 = clampPhi(phi0 + vPhi * dt);
+        var dec = Math.exp(-3.2 * dt);
+        vLam *= dec; vPhi *= dec;
+        if (Math.abs(vLam) < 0.01 && Math.abs(vPhi) < 0.01) { vLam = 0; vPhi = 0; }
+      }
+      if (!target && marker && !vLam && !vPhi && ts - lastInteract > RETURN_AFTER) {
+        target = { lam: marker.lon, phi: tiltFor(marker.latD) };   // drift back to the latest download
+      }
+      if (target) {
+        var k = 1 - Math.exp(-1.7 * dt);
+        var dlam = wrap(target.lam - lam0);
+        var maxStep = 2.4 * dt;
+        lam0 = wrap(lam0 + Math.max(-maxStep, Math.min(maxStep, dlam * k * 1.4)));
+        phi0 += (target.phi - phi0) * k;
+      } else if (!marker && !reduceMotion) {
+        lam0 = wrap(lam0 - IDLE_SPEED * dt);
+      }
     }
     draw(ts);
     requestAnimationFrame(frame);
